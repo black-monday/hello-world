@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE struts PUBLIC  
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"  
+    "http://struts.apache.org/dtds/struts-2.0.dtd">  
+      
+<struts> 
+
+<constant name="struts.devMode" value="true" /> 
+<!-- 该属性指定Struts2中的action由Spring容器创建 -->
+	<!--constant name="struts.objectFactory" value="spring"></constant -->
+	<constant value="spring" name="struts.objectFactory" />
+	<constant name="struts.objectFactory" value="spring"></constant>
+	<include file="resource/struts-wyb.xml"></include>
+
+</struts>

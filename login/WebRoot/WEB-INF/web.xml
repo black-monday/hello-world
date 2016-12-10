@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+  
+   <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>classpath:applicationContext*.xml</param-value>
+  </context-param>
+  
+   <context-param>
+    <param-name>webAppRootKey</param-name>
+    <param-value>login.root</param-value>
+  </context-param>
+  
+   <context-param>
+    <param-name>log4jConfigLocation</param-name>
+    <param-value>/WEB-INF/classes/log4j.properties</param-value>
+  </context-param>
+  
+  <filter>
+    <filter-name>encodingfilter</filter-name>
+    <filter-class>youde.util.EncodingFilter</filter-class>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+  </filter>
+    <filter-mapping>
+    <filter-name>encodingfilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+	<listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+ 
+	<filter>  
+        <filter-name>struts2</filter-name>  
+        <filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>  
+    </filter>  
+   <filter-mapping>
+    <filter-name>struts2</filter-name>
+    <url-pattern>*.jsp</url-pattern>
+    <url-pattern>*.action</url-pattern>
+  </filter-mapping>
+   <filter>
+    <filter-name>struts-cleanup</filter-name>
+    <filter-class>org.apache.struts2.dispatcher.ActionContextCleanUp</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>struts-cleanup</filter-name>
+    <url-pattern>*.jsp</url-pattern>
+    <url-pattern>*.action</url-pattern>
+  </filter-mapping>
+  
+ 
+  <filter>
+    <filter-name>hibernateFilter</filter-name>
+    <filter-class>org.springframework.orm.hibernate3.support.OpenSessionInViewFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>hibernateFilter</filter-name>
+    <url-pattern>*.action</url-pattern>
+  </filter-mapping>
+  <filter>
+    <filter-name>openSessionInViewFilter</filter-name>
+    <filter-class>org.springframework.orm.hibernate4.support.OpenSessionInViewFilter</filter-class>
+    <init-param>
+      <param-name>singleSession</param-name>
+      <param-value>true</param-value>
+    </init-param>
+  </filter>
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  <context-param>  
+        <param-name>contextConfigLocation</param-name>  
+        <param-value>classpath:applicationContext.xml</param-value>  
+    </context-param>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>WebOfficeServlet</servlet-name>
+    <servlet-class>edu.nciae.servlet.WebOfficeServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>SaveServlet</servlet-name>
+    <servlet-class>youde.SaveServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>WebOfficeServlet</servlet-name>
+    <url-pattern>/weboffice/WebOfficeServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>SaveServlet</servlet-name>
+    <url-pattern>/weboffice/SaveServlet</url-pattern>
+  </servlet-mapping>
+  <login-config>
+    <auth-method>BASIC</auth-method>
+  </login-config>
+ 
+  <listener>
+    <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+  </listener>
+  
+  
+  <servlet>
+  		<servlet-name>qrCode</servlet-name>
+  		<servlet-class>youde.servlet.BarCode2DServlet</servlet-class>
+  	</servlet>
+  	<servlet-mapping>
+  		<servlet-name>qrCode</servlet-name>
+  		<url-pattern>/qrCode</url-pattern>
+  	</servlet-mapping>
+
+
+  
+</web-app>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:p="http://www.springframework.org/schema/p" 
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context-3.0.xsd
+        http://www.springframework.org/schema/tx 
+        http://www.springframework.org/schema/tx/spring-tx.xsd 
+        http://www.springframework.org/schema/aop 
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
+    
+    <!-- 引入配置文件，每个人开发时自己复制一个这样的文件，放在resource文件夹中，
+               在里面配置bean，最后引入到这个文件中 -->
+    <import resource="classpath:database.xml"/>   
+      <!--李瑞问卷调查 --><!-- id与struts-***中class一样     name 与action中定义的一样
+                           property-name，ref，bean-id，一样-->
+ 	<bean id="userAction" class="youde.action.UserAction" scope="prototype">  
+      <property name="userService" ref="userService" />  
+    </bean> 
+    <bean id="userService" class="youde.service.impl.UserServiceImpl">  
+      <property name="userDAO" ref="userDAO" />  
+    </bean>    
+    <bean id="userDAO" class="youde.dao.impl.UserDAOImpl">  
+      <property name="sessionFactory" ref="sessionFactory"></property>  
+    </bean>
+    <!--李瑞问卷调查 -->
+</beans>
